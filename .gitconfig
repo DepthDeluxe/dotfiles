@@ -1,0 +1,7 @@
+[user]
+    name = DepthDeluxe
+    email = colin@heinzmann.me
+[core]
+	editor = vim
+[push]
+	default = simple
