@@ -1,5 +1,6 @@
 set nocompatible    " required
 filetype off        " required
+set encoding=utf-8
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -33,6 +34,9 @@ Plugin 'junegunn/fzf.vim'
 
 " Easy commenting
 Plugin 'tpope/vim-commentary'
+
+" Solarized theme
+Plugin 'altercation/vim-colors-solarized'
 
 call vundle#end()
 
