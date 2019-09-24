@@ -35,13 +35,14 @@ Plugin 'junegunn/fzf.vim'
 " Easy commenting
 Plugin 'tpope/vim-commentary'
 
-" Solarized theme
-Plugin 'altercation/vim-colors-solarized'
+" TagBar support
+Plugin 'majutsushi/tagbar'
 
 call vundle#end()
 
 "
 " Core Configuration
+"
 "
 
 filetype plugin indent on
@@ -55,6 +56,9 @@ set tabstop=4
 set shiftwidth=4
 " On pressing tab, insert 4 spaces
 set expandtab
+set cursorline
+set mouse=a
+
 
 " Easier split navigation
 nnoremap <C-J> <C-W><C-J>
@@ -65,7 +69,7 @@ nnoremap <C-H> <C-W><C-H>
 let mapleader = ","
 
 " Quick ctag generation
-nnoremap <leader>c :!ctags -R<cr>
+nnoremap <leader>c :!ctags -R --python-kinds=-i --c++-kinds=+p --fields=+iaS --extra=+q --exclude='*node_modules' --exclude='*build' --exclude='*venv'<cr>
 
 " Quick close bottom window
 nnoremap \x :cclose<cr>
@@ -89,7 +93,7 @@ nnoremap <leader>t :Tags<cr>
 " Ack.vim config
 " Use ag for Ack.vim
 if executable('ag')
-    let g:ackprg = 'ag --vimgrep'
+    let g:ackprg = 'ag --vimgrep --ignore ''*/tags'' --ignore ''tags'''
 endif
 nnoremap <leader>a :Ack 
 
@@ -118,16 +122,6 @@ nnoremap <leader>/ :noh<CR>
 set directory=$HOME/.vim/tmp/swap
 if !isdirectory(&directory) | call mkdir(&directory, 'p', 700) | endif
 
-"python with virtualenv support
-py << EOF
-import os
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-  execfile(activate_this, dict(__file__=activate_this))
-EOF
-
 let g:ale_linters = {'python': ['flake8']}
 
 " YouCompleteMe settings
@@ -141,3 +135,9 @@ let g:lightline = {
     \ 'colorscheme': 'solarized'
     \ }
 set laststatus=2
+
+" Tagbar shortcuts
+nnoremap <leader>b :TagbarToggle<cr>
+
+"Youcompleteme fix
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
