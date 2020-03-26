@@ -1,0 +1,15 @@
+{
+    "vim.normalModeKeyBindings": [
+        {
+            "before": ["g", "r"],
+            "after": ["Shift", "F-12"]
+        },
+        {
+            "before": ["g", "s"],
+            "after": ["Ctrl", "Shift", "o"]
+        },
+    ],
+    "workbench.colorTheme": "Monokai",
+    "vim.neovimPath": "C:\\tools\\neovim\\Neovim\\bin\\nvim.exe",
+    "vim.useSystemClipboard": true
+}
